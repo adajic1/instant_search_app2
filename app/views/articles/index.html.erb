@@ -1,0 +1,40 @@
+<h1>Articles</h1>
+<%= form_for :article, :url => "", html: {id: :new_article_form } do |f| %>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_field :description, :size=>"50" %>
+	</p>
+ 
+	<p>
+		<%= f.label :content %><br>
+		<%= f.text_area :content, :size=>"80x5" %>
+	</p>
+ 
+	<p>
+		<%= f.submit :id => 'save_article', :type => 'button', :value => "Add new article" %>
+		<input type="button" id="clear_form_button" value="Clear fields">
+		<input type="button" id="clear_all_articles" value="Clear all articles">
+	</p>
+<% end %>
+
+<%= render partial: "article_template" %>
+
+<table cellspacing="0" cellpadding="0" border="0" width="80%">
+	<tr>
+		<td>
+			<span id="articles_list">
+				<script type="text/javascript">
+				// All of these will be inserted on $(document).ready
+				var array_of_article_ids = [];
+				var array_of_article_descriptions = [];
+				var array_of_article_contents = [];
+				<% @articles.each do |article| %>
+					array_of_article_ids.push('<%= article.id %>');
+					array_of_article_descriptions.push('<%== escape_javascript article.description %>');
+					array_of_article_contents.push('<%== escape_javascript article.content %>');
+				<% end %>
+				</script>
+			</span>
+		</td>
+	</tr>
+</table>

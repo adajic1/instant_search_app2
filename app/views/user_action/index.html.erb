@@ -1,0 +1,62 @@
+<center>
+	<h1>Info for user actions</h1>
+<% @sessions = @sessions_info["sessions"] %>
+<% @sessions.each do |session| %>
+<table id="session_table_<%= session.id %>" cellspacing="5" cellpadding="2" border="3" width="80%">
+<tr>
+	<td width="1px" style="white-space: nowrap;">Session IP: <font color="purple"><%= session.body %></font></td>
+	<td width="1px" style="white-space: nowrap;">Session id: <font color="purple"><%= session.id %></font></td>
+	<td width="1px" style="white-space: nowrap;">Created at: <font color="purple"><%= session.created_at %></font></td>
+	<td width="1px" style="white-space: nowrap;">Updated at: <font color="purple"><%= session.updated_at %></font></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td colspan="5">
+		Path info: 
+		<% session.user_actions.order(id: :ASC).each_with_index do |user_action, index| %>
+			<font color="blue"><%= user_action.action_type %></font>
+			<font color="black"><%= user_action.description %></font>
+			<% if index!=session.user_actions.size-1 %>
+				<font color="red"><b>--></b></font>
+			<% end %>
+		<% end %>	
+	</td>
+</tr>
+<tr>
+	<td colspan="5" align="right">
+		<span id="delete_session_<%= session.id %>" style="cursor: pointer;"><font color="blue">
+			DELETE SESSION
+		</font></span>
+	</td>
+</tr>
+</table>
+<% end %>
+<br>
+<table cellspacing="8" cellpadding="5" cellspacing="5" cellpadding="2" border="3">
+	<tr>
+		<td>Total number of sessions: </td>
+		<td><%= @sessions_info["total_sessions"] %></td>
+	</tr>
+	<tr>
+		<td>Total number of user actions: </td>
+		<td><%= @sessions_info["total_user_actions"] %></td>
+	</tr>
+	<tr>
+		<td>Sessions with single search query: </td>
+		<td><%= @sessions_info["sessions_with_single_search"] %></td>
+	</tr>
+	<tr>
+		<td>Sessions with multiple search queries: </td>
+		<td><%= @sessions_info["sessions_with_multiple_search"] %></td>
+	</tr> 
+	<tr>
+		<td>Sessions which contacted support: </td>
+		<td><%= @sessions_info["sessions_contacted_support"] %></td>
+	</tr>
+	<tr>
+		<td>Sessions which closed tab: </td>
+		<td><%= @sessions_info["sessions_closed_tab"] %></td>
+	</tr> 
+</table>
+
+</center>

@@ -1,0 +1,58 @@
+<%= render partial: "article_template" %>
+<center>
+	<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td width="35%" align="left">
+				<input type="button" value="Contact support by phone" class="button_red" id="button_contact_support_phone">
+			</td>
+			<td width="30%" align="center">
+				<a href="articles/index" target="_blank"><input type="button" value="Create, preview or delete articles" class="button_green"></a>
+			</td>
+			<td align="right">				
+				<input type="button" value="Contact support by email" class="button_red" id="button_contact_support_email">
+			</td>
+		</tr>
+	</table>
+	<span style="visibility:hidden;" id="note">
+		<font size=2><i>
+			Note: You can still submit a new query by pressing ENTER
+		</i></font>
+	</span><br>
+	<font class="instant_search_title">
+		Instant search <span id="info_instant_search"></span>
+	</font><br>
+	<input type="button" value="Turn on instant search" class="button_blue" id="button_turn_on">
+	<input type="button" value="Turn off instant search" class="button_blue" id="button_turn_off">
+	<br><br>
+	<input type="text" id="searchbox" placeholder="Search..."><br>
+	<div id="result" style="visibility:hidden;">
+		PlaceHolder
+	</div><br>
+	<a href="analytics/index" target="_blank"><input type="button" value="View analytics" class="button_green"></a>
+	<a href="user_action/index" target="_blank"><input type="button" value="View user actions" class="button_green"></a>
+	<br>
+	<table cellspacing="0" cellpadding="0" border=0 width="90%">
+		<tr>
+			<td valign="top" align="center" style="padding-left: 30px; padding-right: 30px;">
+				Clicked article preview<br>
+				<span id="article">
+					<img src="images/Preview.png">
+				</span>
+			</td>
+			<td valign="top" width="45%" align="center">
+				Search results
+				<span id="articles_list">
+			
+				</span>
+			</td>
+			
+		</tr>
+	</table>	
+</center>
+<script type="text/javascript">
+	type_search = "<%= UserAction::TYPE_SEARCH %>"
+	type_click = "<%= UserAction::TYPE_CLICK %>"
+	type_read = "<%= UserAction::TYPE_READ %>"
+	type_close_tab = "<%= UserAction::TYPE_CLOSE_TAB %>"
+	type_support = "<%= UserAction::TYPE_SUPPORT %>"
+</script>
